@@ -1,0 +1,138 @@
+/* Pages événement Fééti : mobile d'abord, sans dépendance CSS (budget < 300 Ko).
+   Charte reprise du site Fééti : bleu nuit du logo, vert Fééti, titres en Nexa. */
+@font-face {
+  font-family: "Nexa";
+  src: url("/fonts/Nexa-Heavy.ttf") format("truetype");
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Accent de l'organisateur (personnalisable) : boutons d'achat et étiquettes */
+  --accent: #811aec;
+  --brand: #1a0957;      /* bleu nuit du logo */
+  --brand-dark: #03033b; /* fond du pied de page du site */
+  --brand-green: #16bda0;
+  --ink: #14111a;
+  --muted: #5e5868;
+  --line: #e7e3ee;
+  --bg: #f6f6f8;
+  --card: #ffffff;
+  --radius: 12px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-title: "Nexa", var(--font);
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; font-family: var(--font); color: var(--ink); background: var(--bg); line-height: 1.5; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2 { line-height: 1.2; margin: 0; color: var(--brand); font-family: var(--font-title); }
+h1 { font-size: clamp(1.7rem, 5.5vw, 2.4rem); font-weight: 900; letter-spacing: -0.01em; }
+h2 { font-size: 1.15rem; font-weight: 800; margin-bottom: 0.75rem; }
+p { margin: 0; }
+
+.page { max-width: 720px; margin: 0 auto; padding-bottom: 96px; min-height: 100vh; display: flex; flex-direction: column; }
+.page > main { flex: 1; }
+.muted { color: var(--muted); }
+.small { font-size: 0.85rem; }
+.strong { font-weight: 700; }
+
+.preview-banner { background: var(--brand-dark); color: #fff; padding: 0.6rem 1rem; font-size: 0.9rem; text-align: center; }
+
+/* Bandeau supérieur : logo officiel */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 0.65rem 1rem; background: var(--card); border-bottom: 1px solid var(--line);
+  position: sticky; top: 0; z-index: 10;
+}
+.brand { display: inline-flex; align-items: center; text-decoration: none; }
+.brand img { height: 30px; width: auto; }
+
+/* Boutons : rayon modéré, pas de pilule */
+.btn-primary, .btn-outline, .btn-ghost {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;
+  min-height: 44px; padding: 0 1.1rem; border-radius: 8px; font: inherit; font-weight: 700;
+  text-decoration: none; cursor: pointer; border: 1px solid transparent;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+/* Accent clair (vert Fééti Play) : texte foncé pour garder un contraste AA */
+.page[style*="#CDFF71"] .btn-primary, .page[style*="#cdff71"] .btn-primary { color: var(--ink); }
+.btn-primary:disabled { background: #d9d6df; color: #4a4553; cursor: not-allowed; }
+.btn-outline { background: var(--card); border-color: var(--line); color: var(--brand); margin-top: 0.9rem; }
+.btn-outline:hover { border-color: var(--brand); }
+.btn-ghost { background: transparent; color: var(--brand); padding: 0 0.6rem; font-weight: 700; }
+.btn-ghost:hover { background: var(--bg); }
+.btn-primary:focus-visible, .btn-outline:focus-visible, .btn-ghost:focus-visible, a:focus-visible {
+  outline: 3px solid var(--brand-green); outline-offset: 2px;
+}
+
+/* Couverture */
+.cover { background: var(--card); }
+.cover-img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #e4e1ea; }
+.cover-empty { background: #e4e1ea; }
+.cover-body { padding: 1.2rem 1rem 1.4rem; display: grid; gap: 0.8rem; }
+
+/* Étiquette de statut */
+.tag { justify-self: start; font-size: 0.8rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 6px; background: #e6f8f4; color: #0b6b5a; }
+.tag-soldout, .tag-paused, .tag-blocked { background: #fdecea; color: #8a1c13; }
+.tag-ended { background: #ecebef; color: #4a4553; }
+.tag-preview { background: var(--brand-dark); color: #fff; }
+
+.facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.facts li { display: grid; grid-template-columns: 4.5rem 1fr; gap: 0.5rem; }
+.fact-label { color: var(--muted); font-size: 0.9rem; }
+.facts a { color: var(--brand); text-underline-offset: 3px; }
+
+/* Cartes */
+.card { background: var(--card); margin: 0.75rem 0.75rem 0; padding: 1.15rem 1rem; border: 1px solid var(--line); border-radius: var(--radius); }
+.organizer { display: flex; align-items: center; gap: 0.8rem; }
+.avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex: none; }
+.avatar-initial { display: grid; place-items: center; background: var(--brand); color: #fff; font-weight: 800; }
+
+.tickets { list-style: none; margin: 0; padding: 0; }
+.tickets li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.75rem 0; border-top: 1px solid var(--line); }
+.tickets li:first-child { border-top: 0; padding-top: 0; }
+.tickets .strong { color: var(--brand); }
+.stock { margin-top: 0.6rem; font-weight: 700; color: #8a1c13; }
+.notice { margin-top: 0.7rem; padding: 0.7rem 0.8rem; border-radius: 8px; background: #f3f2f6; }
+.notice a { color: var(--brand); font-weight: 700; }
+
+.description { white-space: pre-line; }
+
+.discover { margin: 1.5rem 0.75rem 0; padding: 1.4rem 1rem; text-align: center; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); }
+.discover p { color: var(--muted); }
+
+/* Pied de page aux couleurs du site */
+.site-footer {
+  margin-top: 1.5rem; padding: 1.6rem 1rem 1.4rem; background: var(--brand-dark); color: rgb(255 255 255 / 0.75);
+  display: grid; gap: 0.9rem; justify-items: center; text-align: center; font-size: 0.85rem;
+}
+.site-footer-logo { height: 26px; width: auto; }
+.site-footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem 1.1rem; }
+.site-footer a { color: #fff; text-decoration: none; }
+.site-footer a:hover { color: var(--brand-green); }
+
+/* Barre d'achat fixe */
+.buybar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 0.7rem max(1rem, calc((100vw - 720px) / 2 + 1rem)) calc(0.7rem + env(safe-area-inset-bottom));
+  background: var(--card); border-top: 1px solid var(--line);
+}
+.buybar .strong { color: var(--brand); font-size: 1.05rem; }
+.buybar .btn-primary { flex: 1; max-width: 18rem; }
+
+.empty-state { padding: 3rem 1.25rem; display: grid; gap: 1rem; justify-items: start; }
+
+@media (min-width: 720px) {
+  .cover-img { border-radius: 0 0 var(--radius) var(--radius); }
+  .card, .discover { margin-left: 0; margin-right: 0; }
+  .site-footer { border-radius: var(--radius) var(--radius) 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
